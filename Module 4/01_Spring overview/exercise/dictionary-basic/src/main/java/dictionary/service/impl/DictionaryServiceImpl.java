@@ -10,7 +10,7 @@ import java.util.Map;
 public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
-    public Map<String, String> dic() {
+    public Map<String, String> dictionary() {
         Map<String,String> dic= new HashMap<String,String>();
         dic.put("hello","chao");
         dic.put("speaker","loa");
@@ -21,8 +21,8 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public String search(String a) {
-        if (dic().containsKey(a)){
-            return dic().get(a);
+        if (dictionary().containsKey(a)){
+            return dictionary().get(a);
         }
             return "Not found";
     }
