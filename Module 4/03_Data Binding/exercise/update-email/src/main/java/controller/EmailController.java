@@ -12,16 +12,14 @@ public class EmailController {
 
     @GetMapping("/")
     public String showEmail(Model model){
-        model.addAttribute("email", new Email("English","25","Enable spams filter","Thor"));
+        Email email = new Email();
+        model.addAttribute("email",email);
         return "/home";
     }
 
     @PostMapping("/email")
     public String submit(@ModelAttribute("email") Email email, Model model) {
-        model.addAttribute("language", email.getLanguage());
-        model.addAttribute("pageSize", email.getPageSize());
-        model.addAttribute("spams", email.getSpamsFilter());
-        model.addAttribute("sign", email.getSignature());
+        model.addAttribute("email", email);
         return "/home";
     }
 }
