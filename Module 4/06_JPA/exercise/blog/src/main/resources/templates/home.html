@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+    <meta charset="UTF-8">
+    <title>home</title>
+</head>
+<body>
+<div class="container">
+    <h1>BLOG LIST</h1>
+    <a class="btn btn-primary" th:href="@{/blog/create}">Add new blog <i class="fas fa-plus"></i> </a>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <td>Title</td>
+            <td>Content</td>
+            <td>Date</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blog : ${blogList}">
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.content}"></td>
+            <td th:text="${blog.date}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/blog/{id}/edit(id=${blog.id})}">Edit <i
+                        class="fas fa-edit"></i></a>
+                <!--            <td><a class="btn btn-primary" th:href="@{/product/{id}/delete(id=${pro.id})}">Delete</a></td>-->
+
+                <a>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                            th:onclick="'productSetId(\''+ ${blog.id} +'\')'">Delete
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+
+                </a>
+                <a class="btn btn-warning" th:href="@{/blog/{id}/view(id=${blog.id})}">View <i
+                        class="far fa-eye"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa blog</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa blog này?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/blog/delete}" method="get">
+                        <input type="hidden" name="id" id="idDeleted">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function productSetId(id) {
+            document.getElementById("idDeleted").value = id;
+        }
+    </script>
+    <div th:replace="/layout::script"></div>
+</div>
+</body>
+</html>
