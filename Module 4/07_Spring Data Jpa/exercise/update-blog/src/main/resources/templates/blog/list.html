@@ -42,6 +42,14 @@
             </td>
         </tr>
     </table>
+    <a th:href="@{'/blog/list'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">
+        <button class="btn btn-info">Previous</button>
+    </a>
+    <span style="color: red" th:text="${blogs.number + 1}"></span>/
+    <span style="color: red" th:text="${blogs.totalPages}"></span>
+    <a th:href="@{'/blog/list'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">
+        <button class="btn btn-info">Next</button>
+    </a>
 </div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
