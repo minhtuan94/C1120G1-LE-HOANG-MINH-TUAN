@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/main/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>VIEW BLOG</h1>
+    <table class="table table-striped">
+        <tr>
+            <td>Tiêu đề</td>
+            <td th:text="${blog.title}"></td>
+        </tr>
+        <tr>
+            <td>Nội dung</td>
+            <td th:text="${blog.content}"></td>
+        </tr>
+        <tr>
+            <td>Thể loại</td>
+            <td th:text="${blog.category.name}"></td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/blog/list}">
+                <button type="button">Cancel</button>
+            </a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

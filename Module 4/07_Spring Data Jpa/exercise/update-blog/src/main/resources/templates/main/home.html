@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/main/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image: url('./png/hinh-nen-batman-dep-11.jpg')">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" style="margin-left: 100px" th:href="@{/}"> <img
+                            src="./png/batman-the-dark-knight-nhan-vat-dc-10700.png" alt="" width="50px" height="50px">
+                        <span
+                                class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown" style="margin-left: 200px;">
+                    <a class="nav-link dropdown-toggle" style=" font-size: 30px" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Blog
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/blog/list}">Danh sách Blog</a>
+                        <a class="dropdown-item" th:href="@{blog/create}">Thêm mới Blog</a>
+                    </div>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div style="display: flex">
+        <div class="col-md-5">
+            <img src="./png/batman-the-dark-knight-nhan-vat-dc-10700.png" alt="">
+        </div>
+        <div class="col-md-6"
+             style="color: firebrick; text-align: center; font-size: 100px;padding-top: 400px; background-color: gold; float: right; opacity: 0.6;">
+            <h1>BLOG TRUYỆN</h1>
+        </div>
+    </div>
+</div>
+<div th:replace="/main/layout::script"></div>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,7 +1,6 @@
-package blog.blog.entity;
+package com.blog.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "blog")
@@ -14,11 +13,12 @@ public class Blog {
     @Column(name = "blog_title", nullable = false, length = 45)
     private String title;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "blog_content", nullable = false, length = 45)
     private String content;
 
-    @Column(name = "date", columnDefinition = "date", nullable = false)
-    private Timestamp date;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
+    private Category category;
 
     public Blog() {
     }
@@ -47,11 +47,11 @@ public class Blog {
         this.content = content;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

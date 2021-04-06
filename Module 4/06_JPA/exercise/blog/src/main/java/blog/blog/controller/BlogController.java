@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+
 @Controller
 public class BlogController {
 
@@ -27,6 +29,8 @@ public class BlogController {
 
     @PostMapping("/save")
     public String save(Blog blog){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        blog.setDate(timestamp);
         blogService.save(blog);
         return "redirect:/";
     }

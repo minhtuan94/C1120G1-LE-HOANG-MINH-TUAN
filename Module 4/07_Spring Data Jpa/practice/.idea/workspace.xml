@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dec86c71-d90d-49b8-ba88-079fc9a5c423" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../06_JPA/exercise/blog/src/main/java/blog/blog/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../06_JPA/exercise/blog/src/main/java/blog/blog/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../06_JPA/exercise/blog/src/main/java/blog/blog/entity/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../06_JPA/exercise/blog/src/main/java/blog/blog/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../06_JPA/exercise/blog/src/main/resources/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../06_JPA/exercise/blog/src/main/resources/templates/create.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1qmOBC0Jt01NoUyoBsGzmxXKt2V" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ProvinceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="province.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.province.ProvinceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dec86c71-d90d-49b8-ba88-079fc9a5c423" name="Default Changelist" comment="" />
+      <created>1617681160490</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617681160490</updated>
+      <workItem from="1617681166720" duration="144000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1617681285850">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1617681285850" />
+    <state x="209" y="115" key="new project wizard" timestamp="1617681307514">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="209" y="115" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1617681307514" />
+  </component>
+</project>
