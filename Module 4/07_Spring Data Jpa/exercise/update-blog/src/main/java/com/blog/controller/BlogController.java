@@ -31,18 +31,19 @@ public class BlogController {
 
     @GetMapping("/list")
     public String showList(Model model, @PageableDefault(value = 3) Pageable pageable){
-        model.addAttribute("blogs",blogService.findAll(pageable));
+//        model.addAttribute("blogs",blogService.findAll(pageable));
+        model.addAttribute("blogs",blogService.sort(pageable));
         return "/blog/list";
     }
 
     @GetMapping("/search")
     public String listCustomer(Model model, @RequestParam Optional<String> keyword, Pageable pageable) {
         if (!keyword.isPresent()) {
-            model.addAttribute("blogList", blogService.findAll(pageable));
+            model.addAttribute("blogs", blogService.findAll(pageable));
             return "blog/list";
         } else {
             String keywordOld = keyword.get();
-            model.addAttribute("blogList", blogService.findAllInputText(keywordOld, pageable));
+            model.addAttribute("blogs", blogService.search(keywordOld, pageable));
             return "blog/list";
         }
     }

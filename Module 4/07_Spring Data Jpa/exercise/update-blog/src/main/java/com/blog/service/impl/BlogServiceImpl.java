@@ -38,11 +38,14 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> findAllInputText(String name, Pageable pageable) {
+    public Page<Blog> search(String name, Pageable pageable) {
         return blogRepository.findAllByTitleContaining(name, pageable);
     }
+
     @Override
-    public List<Blog> search() {
-        return blogRepository.findAll();
+    public Page<Blog> sort(Pageable pageable) {
+        return blogRepository.findByOrderByTitleAsc(pageable);
     }
+
+
 }

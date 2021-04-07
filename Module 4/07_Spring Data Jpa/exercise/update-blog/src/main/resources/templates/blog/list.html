@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-light justify-content-between">
-<!--    <a class="btn btn-primary btn-sm" th:href="@{/blog/create}">Thêm mới blog</a>-->
+    <!--    <a class="btn btn-primary btn-sm" th:href="@{/blog/create}">Thêm mới blog</a>-->
     <form th:action="@{/blog/search}" class="form-inline">
         <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
@@ -42,14 +42,18 @@
             </td>
         </tr>
     </table>
-    <a th:href="@{'/blog/list'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">
-        <button class="btn btn-info">Previous</button>
-    </a>
-    <span style="color: red" th:text="${blogs.number + 1}"></span>/
-    <span style="color: red" th:text="${blogs.totalPages}"></span>
-    <a th:href="@{'/blog/list'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">
-        <button class="btn btn-info">Next</button>
-    </a>
+    <div class="btn btn-primary">
+        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid"
+           th:href="@{'/blog/list'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}">
+            <!--        <button class="btn btn-info">Previous</button>-->Previous
+        </a>
+        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${blogs.number + 1}"></span>
+        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${blogs.totalPages}"></span>
+        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid"
+           th:href="@{'/blog/list'(page=${blogs.number + 1})}" th:if="${blogs.hasNext()}">
+            <!--        <button class="btn btn-info">Next</button>-->Next
+        </a>
+    </div>
 </div>
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

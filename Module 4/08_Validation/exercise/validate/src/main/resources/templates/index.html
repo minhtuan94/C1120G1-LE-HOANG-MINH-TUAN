@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>index</title>
+</head>
+<body>
+<div class="container">
+    <h1>List</h1>
+    <a th:href="@{/create}">Add User</a>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>Phone number</td>
+            <td>Email</td>
+        </tr>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.email}"></td>
+        </tr>
+    </table>
+    <a th:href="@{/}">Come back</a>
+</div>
+
+</body>
+</html>

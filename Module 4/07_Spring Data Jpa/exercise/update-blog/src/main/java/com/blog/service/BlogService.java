@@ -15,7 +15,7 @@ public interface BlogService {
 
     void delete(Integer id);
 
-    Page<Blog> findAllInputText(String name,Pageable pageable);
+    Page<Blog> search(String name,Pageable pageable);
 
-    List<Blog> search();
+    Page<Blog> sort(Pageable pageable);
 }
