@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "user")
-public class User implements Validator {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,13 +92,4 @@ public class User implements Validator {
         this.email = email;
     }
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return User.class.isAssignableFrom(clazz);
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
-    }
 }

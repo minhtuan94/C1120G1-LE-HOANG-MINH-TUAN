@@ -31,7 +31,7 @@ public class UserController {
 
     @PostMapping("/save")
     public String save(@Valid User user, BindingResult bindingResult, Model model) {
-        new User().validate(user, bindingResult);
+//        new User().validate(user, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             return "/create";
         } else {
