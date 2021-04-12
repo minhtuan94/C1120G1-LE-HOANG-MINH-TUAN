@@ -29,6 +29,4 @@ public class DemoBeforeAdvice {
 //
 //    @Pointcut()
 //    public void testPointCut(){}
-
-
 }

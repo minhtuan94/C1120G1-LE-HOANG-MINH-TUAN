@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 style="color: red">You've bought: </h3>
+<table>
+    <tr th:each="product : ${cart}">
+        <th th:text="${product.key.name}"></th>
+    </tr>
+    <tr>
+        <a th:href="@{/}">Back</a>
+    </tr>
+</table>
+
+</body>
+</html>
