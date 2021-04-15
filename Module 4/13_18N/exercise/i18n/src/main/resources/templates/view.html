@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+<h1 th:text="#{customer}" style="text-align: center"></h1>
+Language: <a href="?lang=en">English</a> | <a href="?lang=vi">Vietnamese</a>| <a href="?lang=korea">Korea</a>
+<table class="table table-striped table-dark">
+    <thead>
+    <tr>
+        <th  th:text="#{customer_id}"></th>
+        <th  th:text="#{customer_firstName}"></th>
+        <th  th:text="#{customer_lastName}"></th>
+        <th  th:text="#{customer_action}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer,customerStat : ${customerList}">
+        <td th:text="${customer.getId()}"></td>
+        <td th:text="${customer.getFirstName()}"></td>
+        <td th:text="${customer.getLastName()}"></td>
+        <td><a th:href="@{/edit/{id}(id=${customer.getId()})}">
+            <button class="btn btn-primary" th:value="#{customer_edit}"></button>
+        </a>
+            <a th:href="@{/delete/{id}(id=${customer.getId()})}">
+                <button class="btn btn-danger" th:value="#{customer_delete}"></button>
+            </a>
+            <a th:href="@{/view/{id}(id=${customer.getId()})}">
+                <button class="btn btn-success" th:value="#{customer_view}"></button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/create}" th:text="#{customer_add}"></a>
+</body>
+</html>

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 @Controller
 @SessionAttributes("cart")
