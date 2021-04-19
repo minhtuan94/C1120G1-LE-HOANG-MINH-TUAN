@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/main/layout::header}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <form th:action="@{/customer/search}" class="form-inline">
+        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+    </form>
+</nav>
+<div class="container-fluid">
+    <h1>DANH SÁCH KHÁCH HÀNG</h1>
+    <table class="table table-responsive-md">
+        <tr>
+            <td>ID</td>
+            <td>Loại khách hàng</td>
+            <td>Tên</td>
+            <td>Ngày sinh</td>
+            <td>Tuổi</td>
+            <td>Giới tính</td>
+            <td>Chứng mình nhân dân</td>
+            <td>Điện thoại</td>
+            <td>Email</td>
+            <td>Địa chỉ</td>
+        </tr>
+        <tr th:each="customer, row : ${customerList}">
+            <td th:text="${row.index+1}"></td>
+            <td th:text="${customer.customer_type.name}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.birthday}"></td>
+            <td th:text="${customer.gender}"></td>
+            <td th:text="${customer.idCard}"></td>
+            <td th:text="${customer.phone}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.address}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/customer/{id}/edit(id=${customer.id})}">Edit <i
+                        class="fas fa-edit"></i></a>
+                <!--            <td><a class="btn btn-primary" th:href="@{/product/{id}/delete(id=${pro.id})}">Delete</a></td>-->
+
+                <a>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                            th:onclick="'actionSetId(\''+ ${customer.id} +'\')'">Delete
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+
+                </a>
+                <a class="btn btn-warning" th:href="@{/customer/{id}/view(id=${customer.id})}">View <i
+                        class="far fa-eye"></i></a>
+            </td>
+        </tr>
+    </table>
+    <div class="btn btn-primary">
+        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid"
+           th:href="@{'/blog/list'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">
+            <!--        <button class="btn btn-info">Previous</button>-->Previous
+        </a>
+        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${customerList.number + 1}"></span>
+        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${customerList.totalPages}"></span>
+        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid"
+           th:href="@{'/blog/list'(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}">
+            <!--        <button class="btn btn-info">Next</button>-->Next
+        </a>
+    </div>
+    <br><br>
+    <a th:href="@{/}"><img src="/picture/FURAMA.png" width="100px" height="100px" alt=""></a>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa blog</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa khách hàng này?
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/customer/delete}" method="get">
+                    <input type="hidden" name="id" id="idDeleted">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function actionSetId(id) {
+        document.getElementById("idDeleted").value = id;
+    }
+</script>
+<div th:replace="~{/main/layout::script}">
+</div>
+</body>
+</html>
