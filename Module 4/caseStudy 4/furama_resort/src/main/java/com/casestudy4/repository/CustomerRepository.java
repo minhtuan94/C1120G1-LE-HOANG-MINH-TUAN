@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-@Repository
 public interface CustomerRepository extends JpaRepository<Customer,Integer> {
-    @Query("select c from Customer c where concat(c.name,c.idCard,c.customer_type.name) like %?1%")
+    @Query(value = "select c from Customer c where concat(c.name,c.idCard,c.customerType.name) like %?1%")
     Page<Customer> findAllByTitleContaining(String title, Pageable pageable);
     Page<Customer> findByOrderByNameAsc(Pageable pageable);
 }

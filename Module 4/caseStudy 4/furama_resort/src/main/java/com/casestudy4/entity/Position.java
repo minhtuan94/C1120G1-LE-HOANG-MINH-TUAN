@@ -4,21 +4,20 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "customer_type")
-public class CustomerType {
-
+@Table(name = "position")
+public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_type_id")
+    @Column(name = "position_id")
     private Integer id;
 
-    @Column(name = "customer_type_name",length = 45)
+    @Column(name = "position_name",length = 45)
     private String name;
 
-    @OneToMany(mappedBy = "customerType")
-    private Set<Customer> customerSet;
+    @OneToMany(mappedBy = "position")
+    private Set<Employee> employeeSet;
 
-    public CustomerType() {
+    public Position() {
     }
 
     public Integer getId() {
@@ -37,11 +36,11 @@ public class CustomerType {
         this.name = name;
     }
 
-    public Set<Customer> getCustomerSet() {
-        return customerSet;
+    public Set<Employee> getEmployeeSet() {
+        return employeeSet;
     }
 
-    public void setCustomerSet(Set<Customer> customerSet) {
-        this.customerSet = customerSet;
+    public void setEmployeeSet(Set<Employee> employeeSet) {
+        this.employeeSet = employeeSet;
     }
 }

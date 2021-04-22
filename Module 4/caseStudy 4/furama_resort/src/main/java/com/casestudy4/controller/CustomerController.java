@@ -1,4 +1,4 @@
-package com.casestudy4.controller.main;
+package com.casestudy4.controller;
 
 import com.casestudy4.entity.Customer;
 import com.casestudy4.entity.CustomerType;
@@ -30,7 +30,7 @@ public class CustomerController {
     }
 
     @GetMapping("/list")
-    public String showList(Model model,@PageableDefault(value = 3) Pageable pageable){
+    public String showList(Model model,@PageableDefault(value = 5) Pageable pageable){
         model.addAttribute("customerList",customerServices.sort(pageable));
         return "/customer/list";
     }
@@ -59,14 +59,20 @@ public class CustomerController {
         return "redirect:/customer/list";
     }
 
+    @GetMapping("{id}/view")
+    public String view(@PathVariable Integer id, Model model){
+        model.addAttribute("customerView",customerServices.findById(id));
+        return "/customer/view";
+    }
+
     @GetMapping("/search")
     public String listCustomer(Model model, @RequestParam Optional<String> keyword, Pageable pageable) {
         if (!keyword.isPresent()) {
-            model.addAttribute("customer", customerServices.findAll(pageable));
+            model.addAttribute("customerList", customerServices.findAll(pageable));
             return "customer/list";
         } else {
             String keywordOld = keyword.get();
-            model.addAttribute("customer", customerServices.search(keywordOld, pageable));
+            model.addAttribute("customerList", customerServices.search(keywordOld, pageable));
             return "customer/list";
         }
     }

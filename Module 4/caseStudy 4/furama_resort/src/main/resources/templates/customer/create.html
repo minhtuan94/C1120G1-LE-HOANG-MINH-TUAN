@@ -4,61 +4,70 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body style="background-image: url('/picture/detail3.jpg')">
+<body>
+<div th:replace="~{/main/layout::nav}"></div>
 <div>
-<div class="container">
-    <form th:action="@{/customer/save}" th:object="${customer}" method="post">
-        <h1>THÊM MỚI KHÁCH HÀNG</h1>
-        <table class="table" style="margin: 0 auto;box-shadow: 5px 5px 5px yellow;background-color: green;opacity: 0.8;color: white">
-            <tr>
-                <td>ID</td>
-                <td><input type="hidden" th:field="*{id}"></td>
-            </tr>
-            <tr>
-                <td>Loại khách hàng</td>
-                <td>
-                    <select th:field="*{customer_type}">
-                        <option th:each="cus : ${customerType}" th:value="${cus.id}" th:text="${cus.name}">
-                        </option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Tên</td>
-                <td><input type="text" th:field="*{name}"></td>
-            </tr>
-            <tr>
-                <td>Ngày sinh</td>
-                <td><input type="date" th:field="*{birthday}"></td>
-            </tr>
-            <tr>
-                <td>Giới tính</td>
-                <td><input type="radio" th:field="*{gender}" name="gender" value="male">Nam
-                    <input type="radio" th:field="*{gender}" name="gender" value="female">Nữ
-                    <input type="radio" th:field="*{gender}" name="gender" value="other">Khác</td>
-            </tr>
-            <tr>
-                <td>Chứng minh nhân dân</td>
-                <td><input type="text" th:field="*{idCard}"></td>
-            </tr>
-            <tr>
-                <td>Số điện thoai</td>
-                <td><input type="text" th:field="*{phone}"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="text" th:field="*{email}"></td>
-            </tr>
-            <tr>
-                <td>Địa chỉ</td>
-                <td><input type="text" th:field="*{address}"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Lưu" class="btn btn-primary"><a th:href="@{/}" class="btn btn-danger">Hủy</a></td>
-            </tr>
-        </table>
-    </form>
+    <div class="container">
+        <form th:action="@{/customer/save}" th:object="${customer}" method="post">
+            <h1>THÊM MỚI KHÁCH HÀNG</h1>
+            <table class="table table-dark">
+<!--                <tr>-->
+<!--                    <th>Tên</th>-->
+<!--                    <td><input type="hidden" th:field="*{id}"></td>-->
+<!--                </tr>-->
+                <tr>
+                    <th>Mã khách hàng</th>
+                    <td><input type="text" th:field="*{code}"></td>
+                </tr>
+                <tr>
+                    <th>Loại khách hàng</th>
+                    <td>
+                        <select th:field="*{customerType}">
+                            <option th:each="cus : ${customerType}" th:value="${cus.id}" th:text="${cus.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tên</th>
+                    <td><input type="text" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <th>Ngày sinh</th>
+                    <td><input type="date" th:field="*{birthday}"></td>
+                </tr>
+                <tr>
+                    <th>Giới tính</th>
+                    <td><input type="radio" th:field="*{gender}" name="gender" value="male">Nam
+                        <input type="radio" th:field="*{gender}" name="gender" value="female">Nữ
+                        <input type="radio" th:field="*{gender}" name="gender" value="other">Khác
+                    </td>
+                </tr>
+                <tr>
+                    <th>Chứng minh nhân dân</th>
+                    <td><input type="text" th:field="*{idCard}"></td>
+                </tr>
+                <tr>
+                    <th>Số điện thoai</th>
+                    <td><input type="text" th:field="*{phone}"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="text" th:field="*{email}"></td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ</th>
+                    <td><input type="text" th:field="*{address}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Lưu" class="btn btn-primary"><a th:href="@{/customer/list}"
+                                                                                    class="btn btn-danger">Hủy</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
-</div>
+<div th:replace="~{/main/layout::script}"></div>
 </body>
 </html>

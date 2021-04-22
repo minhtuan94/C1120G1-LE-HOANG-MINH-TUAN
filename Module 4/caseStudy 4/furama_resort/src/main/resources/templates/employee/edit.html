@@ -8,25 +8,15 @@
 <div th:replace="~{/main/layout::nav}"></div>
 <div>
     <div class="container">
-        <form th:action="@{/customer/save}" th:object="${customer}" method="post">
-            <h1>CHỈNH SỬA KHÁCH HÀNG</h1>
+        <form th:action="@{/employee/save}" th:object="${editEm}" method="post">
+            <h1>CHỈNH SỬA NHÂN VIÊN</h1>
             <table class="table table-dark">
                 <tr>
-                    <th>STT</th>
                     <td><input type="hidden" th:field="*{id}"></td>
                 </tr>
                 <tr>
-                    <th>ID</th>
+                    <th>Mã nhân viên</th>
                     <td><input type="text" th:field="*{code}"></td>
-                </tr>
-                <tr>
-                    <th>Loại khách hàng</th>
-                    <td>
-                        <select th:field="*{customerType}">
-                            <option th:each="cus : ${customerType}" th:value="${cus.id}" th:text="${cus.name}">
-                            </option>
-                        </select>
-                    </td>
                 </tr>
                 <tr>
                     <th>Tên</th>
@@ -37,15 +27,12 @@
                     <td><input type="date" th:field="*{birthday}"></td>
                 </tr>
                 <tr>
-                    <th>Giới tính</th>
-                    <td><input type="radio" th:field="*{gender}" name="gender" value="male">Nam
-                        <input type="radio" th:field="*{gender}" name="gender" value="female">Nữ
-                        <input type="radio" th:field="*{gender}" name="gender" value="other">Khác
-                    </td>
-                </tr>
-                <tr>
                     <th>Chứng minh nhân dân</th>
                     <td><input type="text" th:field="*{idCard}"></td>
+                </tr>
+                <tr>
+                    <th>Lương</th>
+                    <td><input type="text" th:field="*{salary}"></td>
                 </tr>
                 <tr>
                     <th>Số điện thoai</th>
@@ -60,8 +47,35 @@
                     <td><input type="text" th:field="*{address}"></td>
                 </tr>
                 <tr>
+                    <th>Vị trí</th>
+                    <td>
+                        <select th:field="*{position}">
+                            <option th:each="pos : ${position}" th:value="${pos.id}" th:text="${pos.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Trình độ</th>
+                    <td>
+                        <select th:field="*{educationDegree}">
+                            <option th:each="education : ${educationDegree}" th:value="${education.id}" th:text="${education.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Bộ phận</th>
+                    <td>
+                        <select th:field="*{division}">
+                            <option th:each="di : ${division}" th:value="${di.id}" th:text="${di.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td></td>
-                    <td><input type="submit" value="Lưu" class="btn btn-primary"><a th:href="@{/customer/list}"
+                    <td><input type="submit" value="Lưu" class="btn btn-primary"><a th:href="@{/employee/list}"
                                                                                     class="btn btn-danger">Hủy</a></td>
                 </tr>
             </table>

@@ -8,26 +8,109 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <style>
-        .dropdown-item{
+        .dropdown-item {
             color: whitesmoke;
         }
-        body{
+
+        body {
             width: 100%;
             height: 100%;
+            padding: 75px 0  0;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /*background-color: aquamarine;*/
+            background-image: url("/picture/1600.jpg");
         }
-        h1
-        {
+
+        h1 {
             text-align: center;
             color: white;
             text-shadow: 0 0 3px #FF0000;
         }
-        table{
 
+        table {
+            margin: 0 auto;
+            box-shadow: 5px 5px 5px white;
+            background-color: white;
+            opacity: 0.8;
+            color: white
         }
+
     </style>
 </head>
 <body>
+<div th:fragment="nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top" id="fixNav">
+        <a style="color: whitesmoke;margin: 0 50px 0 50px" th:href="@{/}" class="navbar-brand"><img
+                src="/picture/FURAMA.png" width="50px" height="50px" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!--            <li class="nav-item">-->
+                <!--                <a class="nav-link" >Khách hàng</a>-->
+                <!--            </li>-->
+                <li class="nav-item dropdown">
+                    <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown1"
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Khách hàng
+                    </a>
+                    <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/customer/list}" style="cursor: pointer">Danh sách khách hàng</a>
+                        <a class="dropdown-item" th:href="@{/customer/create}">Thêm mới khách hàng</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown2"
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Nhân viên
+                    </a>
+                    <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/employee/list}">Danh sách nhân viên</a>
+                        <a class="dropdown-item" th:href="@{/employee/create}">Thêm mới nhân viên</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown3"
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dịch vụ
+                    </a>
+                    <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/service/list}">Danh sách dịch vụ</a>
+                        <a class="dropdown-item" th:href="@{/service/create}">Thêm mới dịch vụ</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown4"
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hợp đồng
+                    </a>
+                    <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/contract/list}">Danh sách hợp đồng</a>
+                        <a class="dropdown-item" th:href="@{/contract/create}">Thêm mới hợp đồng</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown5"
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hợp đồng chi tiết
+                    </a>
+                    <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/contract_detail/list}">Danh sách hợp đồng chi tiết</a>
+                        <a class="dropdown-item" th:href="@{/contract_detail/create}">Thêm mới hợp đồng chi tiết</a>
+                    </div>
+                </li>
+            </ul>
+            <!--        <form class="form-inline my-2 my-lg-0">-->
+            <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+            <!--        </form>-->
+        </div>
+    </nav>
+</div>
 <div th:fragment="script">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

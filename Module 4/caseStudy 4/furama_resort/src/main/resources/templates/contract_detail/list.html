@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/main/layout::header}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{/main/layout::nav}"></div>
+<div class="container-fluid">
+    <h1>DANH SÁCH HỢP ĐỒNG CHI TIẾT</h1>
+    <table class="table table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Dịch vụ đi kèm</th>
+            <th>Số lượng</th>
+            <th>Hành động</th>
+        </tr>
+        <tr th:each="con, row : ${contract_detailList}">
+            <td th:text="${row.index+1}"></td>
+            <td th:text="${con.contract.startDate}"></td>
+            <td th:text="${con.contract.endDate}"></td>
+            <td th:text="${con.attachService.name}"></td>
+            <td th:text="${con.quantity}"></td>
+            <td>
+                <!--                <a class="btn btn-primary" th:href="@{/contr/{id}/edit(id=${con.id})}"><i-->
+                <!--                        class="fas fa-edit"></i></a>-->
+                <!--                &lt;!&ndash;            <td><a class="btn btn-primary" th:href="@{/product/{id}/delete(id=${pro.id})}">Delete</a></td>&ndash;&gt;-->
+
+                <!--                <a>-->
+                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                        th:onclick="'actionSetId(\''+ ${con.id} +'\')'">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+
+                <!--                </a>-->
+                <!--                <a class="btn btn-warning" th:href="@{/employee/{id}/view(id=${con.id})}"><i-->
+                <!--                        class="far fa-eye"></i></a>-->
+            </td>
+        </tr>
+    </table>
+    <div style="text-align: center">
+        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid" class="btn btn-primary"
+           th:if="${contract_detailList.hasPrevious()}" th:href="@{/contract_detail/list(page=${contract_detailList.number - 1})}">
+            <button class="btn btn-primary">Previous</button>
+        </a>
+        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${contract_detailList.number + 1}"></span>
+        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${contract_detailList.totalPages}"></span>
+        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid" class="btn btn-primary"
+           th:href="@{/contract_detail/list(page=${contract_detailList.number + 1})}" th:if="${contract_detailList.hasNext()}">
+            <button class="btn btn-primary">Next</button>
+        </a>
+    </div>
+    <br><br>
+    <a th:href="@{/}"><img src="/picture/FURAMA.png" width="100px" height="100px" alt=""></a>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa hợp đồng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa hợp đồng này?
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/contract_detail/delete}" method="get">
+                    <input type="hidden" name="id" id="idDeleted">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function actionSetId(id) {
+        document.getElementById("idDeleted").value = id;
+    }
+</script>
+<div th:replace="~{/main/layout::script}"></div>
+</body>
+</html>

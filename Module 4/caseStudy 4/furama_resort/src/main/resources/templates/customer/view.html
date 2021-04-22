@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/main/layout::header}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{/main/layout::nav}"></div>
+<div>
+    <div class="container">
+            <h1>THÔNG TIN KHÁCH HÀNG</h1>
+            <table class="table table-dark">
+                <tr>
+                    <th>STT</th>
+                    <td th:text="${customerView.id}" readonly></td>
+                </tr>
+                <tr>
+                    <th>Mã khách hàng</th>
+                    <td th:text="${customerView.code}" readonly></td>
+                </tr>
+                <tr>
+                    <th>Loại khách hàng</th>
+                    <td th:text="${customerView.customerType.name}"></td>
+                </tr>
+                <tr>
+                    <th>Tên</th>
+                    <td th:text="${customerView.name}"></td>
+                </tr>
+                <tr>
+                    <th>Ngày sinh</th>
+                    <td th:text="${customerView.birthday}"></td>
+                </tr>
+                <tr>
+                    <th>Giới tính</th>
+                    <td th:text="${customerView.gender}"></td>
+                </tr>
+                <tr>
+                    <th>Chứng minh nhân dân</th>
+                    <td th:text="${customerView.idCard}"></td>
+                </tr>
+                <tr>
+                    <th>Số điện thoai</th>
+                    <td th:text="${customerView.phone}"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td th:text="${customerView.email}"></td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ</th>
+                    <td th:text="${customerView.address}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a th:href="@{/customer/list}" class="btn btn-info">Quay lại</a></td>
+                </tr>
+            </table>
+    </div>
+</div>
+<div th:replace="~{/main/layout::script}"></div>
+</body>
+</html>

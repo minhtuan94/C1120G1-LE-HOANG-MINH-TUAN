@@ -1,6 +1,7 @@
 package com.casestudy4.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -10,9 +11,12 @@ public class Customer {
     @Column(name = "customer_id")
     private Integer id;
 
+    @Column(name = "customer_code",length = 45, nullable = false)
+    private String code;
+
     @ManyToOne
     @JoinColumn(name = "customer_type_id",referencedColumnName = "customer_type_id",nullable = false)
-    private CustomerType customer_type;
+    private CustomerType customerType;
 
     @Column(name = "customer_name",length = 45, nullable = false)
     private String name;
@@ -35,6 +39,9 @@ public class Customer {
     @Column(name = "customer_address",length = 45)
     private String address;
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Set<Contract> contractSet;
+
     public Customer() {
     }
 
@@ -46,12 +53,20 @@ public class Customer {
         this.id = id;
     }
 
-    public CustomerType getCustomer_type() {
-        return customer_type;
+    public String getCode() {
+        return code;
     }
 
-    public void setCustomer_type(CustomerType customer_type) {
-        this.customer_type = customer_type;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(CustomerType customer_type) {
+        this.customerType = customer_type;
     }
 
     public String getName() {
@@ -108,5 +123,13 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Contract> getContractSet() {
+        return contractSet;
+    }
+
+    public void setContractSet(Set<Contract> contractSet) {
+        this.contractSet = contractSet;
     }
 }

@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<div th:replace="~{/main/layout::nav}"></div>
 <nav class="navbar navbar-light bg-light justify-content-between">
     <form th:action="@{/customer/search}" class="form-inline">
         <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
@@ -13,58 +14,73 @@
 </nav>
 <div class="container-fluid">
     <h1>DANH SÁCH KHÁCH HÀNG</h1>
-    <table class="table table-responsive-md">
+    <a class="btn btn-info" th:href="@{/contract/using}">Danh sách khách hàng đang sử dụng dịch vụ</a>
+    <table class="table table-dark">
         <tr>
-            <td>ID</td>
-            <td>Loại khách hàng</td>
-            <td>Tên</td>
-            <td>Ngày sinh</td>
-            <td>Tuổi</td>
-            <td>Giới tính</td>
-            <td>Chứng mình nhân dân</td>
-            <td>Điện thoại</td>
-            <td>Email</td>
-            <td>Địa chỉ</td>
+            <th>STT</th>
+            <th>Mã Khách hàng</th>
+            <th>Loại khách hàng</th>
+            <th>Tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Chứng mình nhân dân</th>
+            <th>Điện thoại</th>
+            <th>Email</th>
+            <th>Địa chỉ</th>
+            <th>Hành động</th>
         </tr>
-        <tr th:each="customer, row : ${customerList}">
+        <tr th:each="cus, row : ${customerList}">
             <td th:text="${row.index+1}"></td>
-            <td th:text="${customer.customer_type.name}"></td>
-            <td th:text="${customer.name}"></td>
-            <td th:text="${customer.birthday}"></td>
-            <td th:text="${customer.gender}"></td>
-            <td th:text="${customer.idCard}"></td>
-            <td th:text="${customer.phone}"></td>
-            <td th:text="${customer.email}"></td>
-            <td th:text="${customer.address}"></td>
+            <td th:text="${cus.code}"></td>
+            <td th:text="${cus.customerType.name}"></td>
+            <td th:text="${cus.name}"></td>
+            <td th:text="${cus.birthday}"></td>
+            <td th:text="${cus.gender}"></td>
+            <td th:text="${cus.idCard}"></td>
+            <td th:text="${cus.phone}"></td>
+            <td th:text="${cus.email}"></td>
+            <td th:text="${cus.address}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/customer/{id}/edit(id=${customer.id})}">Edit <i
+                <a class="btn btn-primary" th:href="@{/customer/{id}/edit(id=${cus.id})}"><i
                         class="fas fa-edit"></i></a>
                 <!--            <td><a class="btn btn-primary" th:href="@{/product/{id}/delete(id=${pro.id})}">Delete</a></td>-->
 
                 <a>
                     <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
-                            th:onclick="'actionSetId(\''+ ${customer.id} +'\')'">Delete
+                            th:onclick="'actionSetId(\''+ ${cus.id} +'\')'">
                         <i class="fas fa-trash-alt"></i>
                     </button>
 
                 </a>
-                <a class="btn btn-warning" th:href="@{/customer/{id}/view(id=${customer.id})}">View <i
+                <a class="btn btn-warning" th:href="@{/customer/{id}/view(id=${cus.id})}"><i
                         class="far fa-eye"></i></a>
             </td>
         </tr>
     </table>
-    <div class="btn btn-primary">
-        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid"
-           th:href="@{'/blog/list'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">
-            <!--        <button class="btn btn-info">Previous</button>-->Previous
-        </a>
-        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${customerList.number + 1}"></span>
-        <span style="color: white;padding: 10px ;border: white 1px solid" th:text="${customerList.totalPages}"></span>
-        <a style="color: white;padding: 10px;text-decoration: none;border: white 1px solid"
-           th:href="@{'/blog/list'(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}">
-            <!--        <button class="btn btn-info">Next</button>-->Next
-        </a>
-    </div>
+    <nav aria-label="page-nav">
+        <ul class="pagination justify-content-center">
+            <li th:class="${customerList.hasPrevious()}? 'page-item': 'page-item disabled'">
+                <a class="page-link" th:tabindex="${customerList.hasPrevious()}? 0 :1"
+                   th:href="@{/customer/list?page=__${customerList.number -1}__}">Previous</a>
+            </li>
+            <li class="page-item" th:if="${customerList.hasPrevious()}">
+                <a class="page-link" th:href="@{/customer/list?page=__${customerList.number -1}__}"
+                   th:text="${customerList.number}"></a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" th:href="@{/customer/list?page=__${customerList.number}__}"
+                   th:text="${customerList.number+1}"></a>
+            </li>
+            <li class="page-item" th:if="${customerList.hasNext()}">
+                <a class="page-link" th:href="@{/customer/list?page=__${customerList.number +1}__}"
+                   th:text="${customerList.number+2}"></a>
+            </li>
+            <li th:class="${customerList.hasNext()}? 'page-item': 'page-item disabled'">
+                <a class="page-link" th:tabindex="${customerList.hasNext()}? 0 :1"
+                   th:href="@{/customer/list?page=__${customerList.number +1}__}">Next</a>
+            </li>
+        </ul>
+    </nav>
     <br><br>
     <a th:href="@{/}"><img src="/picture/FURAMA.png" width="100px" height="100px" alt=""></a>
 </div>
@@ -72,7 +88,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Xóa blog</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Xóa khách hàng</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -95,7 +111,6 @@
         document.getElementById("idDeleted").value = id;
     }
 </script>
-<div th:replace="~{/main/layout::script}">
-</div>
+<div th:replace="~{/main/layout::script}"></div>
 </body>
 </html>
