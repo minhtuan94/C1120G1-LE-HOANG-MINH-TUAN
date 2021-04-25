@@ -29,6 +29,14 @@ public class ContractDetailServicesImpl implements ContractDetailServices {
 
     @Override
     public void save(ContractDetail contractDetail) {
+        Integer newQuantity = contractDetail.getQuantity();
+        for (ContractDetail conDetail : findAll()) {
+            if (conDetail.getContract().getId().equals(contractDetail.getContract().getId())
+                    && conDetail.getAttachService().getId().equals(contractDetail.getAttachService().getId())) {
+                contractDetail.setId(conDetail.getId());
+                contractDetail.setQuantity(conDetail.getQuantity() + newQuantity);
+            }
+        }
         contractDetailRepository.save(contractDetail);
     }
 

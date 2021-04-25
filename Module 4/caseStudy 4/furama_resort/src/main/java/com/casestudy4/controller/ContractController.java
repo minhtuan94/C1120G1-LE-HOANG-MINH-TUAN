@@ -1,19 +1,15 @@
 package com.casestudy4.controller;
 
-import com.casestudy4.entity.Contract;
-import com.casestudy4.entity.Customer;
-import com.casestudy4.entity.Employee;
-import com.casestudy4.entity.Service;
-import com.casestudy4.services.ContractServices;
-import com.casestudy4.services.CustomerServices;
-import com.casestudy4.services.EmployeeServices;
-import com.casestudy4.services.ServiceServices;
+import com.casestudy4.entity.*;
+import com.casestudy4.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
@@ -36,6 +32,8 @@ public class ContractController {
     @Autowired
     private ServiceServices serviceServices;
 
+    @Autowired
+    private ContractDetailServices contractDetailServices;
     @ModelAttribute("employees")
     private List<Employee> employees(){
         return employeeServices.findAll();
@@ -59,14 +57,22 @@ public class ContractController {
 
     @GetMapping("/create")
     public String create(Model model){
-        model.addAttribute("createCon",new Contract());
+        model.addAttribute("contract",new Contract());
         return "/contract/create";
     }
 
     @PostMapping("/save")
-    public String save(Contract contract){
-        contractServices.save(contract);
-        return "redirect:/contract/list";
+    public String save(@Validated Contract contract, BindingResult bindingResult, ContractDetail contractDetail){
+        new Contract().validate(contract, bindingResult);
+        ContractDetail contractDetail1 = this.contractDetailServices.findById(contractDetail.getId());
+
+        if (bindingResult.hasErrors()){
+            return "contract/create";
+        } else {
+            this.contractServices.save(contract);
+            this.contractServices.save(contractDetail1);
+            return "redirect:/contract/list";
+        }
     }
 
     @GetMapping("/delete")

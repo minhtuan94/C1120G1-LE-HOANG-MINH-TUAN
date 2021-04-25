@@ -1,12 +1,12 @@
 package com.casestudy4.services.impl;
 
-import com.casestudy4.entity.Customer;
 import com.casestudy4.repository.ServiceRepository;
 import com.casestudy4.services.ServiceServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 
 import java.util.List;
 
@@ -26,6 +26,7 @@ public class ServiceServicesImpl implements ServiceServices {
     public Page<com.casestudy4.entity.Service> sort(Pageable pageable) {
         return serviceRepository.findByOrderByNameAsc(pageable);
     }
+
 
     @Override
     public Page<com.casestudy4.entity.Service> findAll(Pageable pageable) {
@@ -51,4 +52,19 @@ public class ServiceServicesImpl implements ServiceServices {
     public List<com.casestudy4.entity.Service> findAll() {
         return serviceRepository.findAll();
     }
+
+    @Override
+    public void checkServiceCode(com.casestudy4.entity.Service service, Errors errors) {
+        for(com.casestudy4.entity.Service ser : findAll()){
+            if (ser.getCode().equals(service.getCode())){
+                errors.rejectValue("code", "ser.code.existed");
+                return;
+            }
+        }
+    }
+
+//    @Override
+//    public List<com.casestudy4.entity.Service> getListServiceAvailable(String date) {
+//        return serviceRepository.getListServiceAvailable(date);
+//    }
 }

@@ -1,15 +1,21 @@
 package com.casestudy4.entity;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "contract")
-public class Contract {
+public class Contract implements Validator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contract_id", nullable = false)
+    @Column(name = "contract_id")
     private Integer id;
 
     @Column(name = "contract_start_date", columnDefinition = "DATETIME",nullable = false)
@@ -112,5 +118,31 @@ public class Contract {
 
     public void setContractDetailSet(Set<ContractDetail> contractDetailSet) {
         this.contractDetailSet = contractDetailSet;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object object, Errors errors) {
+        Contract contract = (Contract) object;
+        try {
+            Date start = new SimpleDateFormat("yyyy-MM-dd").parse(contract.getStartDate());
+            Date end = new SimpleDateFormat("yyyy-MM-dd").parse(contract.getEndDate());
+            Date currentDate = new Date();
+            if (start.after(end)) {
+                errors.rejectValue("startDate", "con.start.afterEnd");
+            }
+            if (end.before(start)) {
+                errors.rejectValue("endDate", "con.end.beforeStart");
+            }
+            if (end.before(currentDate)){
+                errors.rejectValue("endDate", "con.end.beforeCurrent");
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

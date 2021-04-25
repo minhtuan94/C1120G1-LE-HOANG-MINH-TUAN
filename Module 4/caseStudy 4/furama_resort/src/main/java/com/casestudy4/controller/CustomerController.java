@@ -9,8 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,9 +45,13 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String save(Customer customer){
-        customerServices.save(customer);
-        return "redirect:/customer/list";
+    public String save(@Validated Customer customer, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return "/customer/create";
+        } else {
+            customerServices.save(customer);
+            return "redirect:/customer/list";
+        }
     }
 
     @GetMapping("/{id}/edit")

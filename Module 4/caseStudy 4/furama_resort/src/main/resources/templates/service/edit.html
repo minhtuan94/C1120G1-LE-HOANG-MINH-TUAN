@@ -8,7 +8,7 @@
 <div th:replace="~{/main/layout::nav}"></div>
 <div>
     <div class="container">
-        <form th:action="@{/service/save}" th:object="${editSer}" method="post">
+        <form th:action="@{/service/save}" th:object="${service}" method="post">
             <h1>CHỈNH SỬA DỊCH VỤ</h1>
             <table class="table table-dark">
                 <tr>
@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <th>Mã dịch vụ</th>
-                    <td><input type="text" th:field="*{code}"></td>
+                    <td><input type="text" th:field="*{code}"><br><p class="text-danger" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></td>
                 </tr>
                 <tr>
                     <th>Tên dịch vụ</th>

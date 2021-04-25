@@ -1,6 +1,9 @@
 package com.casestudy4.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
@@ -20,15 +23,21 @@ public class Employee {
     @Column(name = "employee_birthday",columnDefinition = "date",length = 45)
     private String birthday;
 
+    @NotEmpty(message = "CMND không được trống")
+    @Pattern(regexp = "[0-9]{9}|[0-9]{12}", message = "Số CMND phải đúng định dạng XXXXXXXXX hoặc XXXXXXXXXXXX (X là số 0-9)")
     @Column(name = "employee_id_card",length = 45)
     private String idCard;
 
     @Column(name = "employee_salary")
     private Double salary;
 
+    @NotEmpty(message = "Số điện thoại không được trống")
+    @Pattern(regexp = "(09)(0|1)[0-9]{7}|(84\\+)(09)(0|1)[0-9]{7}", message = "Số điện thoại phải đúng định dạng 090xxxxxxx,091xxxxxxx,(84)+90xxxxxxx,(84)+91xxxxxxx")
     @Column(name = "employee_phone",length = 45)
     private String phone;
 
+    @NotEmpty(message = "không được để trống")
+    @Email(message = "emai phải đúng định dạng")
     @Column(name = "employee_email",length = 45)
     private String email;
 

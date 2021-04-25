@@ -19,6 +19,7 @@
             <th>Khách hàng</th>
             <th>Dịch vụ</th>
             <th>Dịch vụ đi kèm</th>
+            <th>Số lượng</th>
             <th>Hành động</th>
         </tr>
         <tr th:each="con, row : ${contractList}">
@@ -33,6 +34,11 @@
             <td>
                 <th:block th:each="detail : ${con.contractDetailSet}">
                     <p th:text="${detail.attachService.name}"></p>
+                </th:block>
+            </td>
+            <td>
+                <th:block th:each="detail : ${con.contractDetailSet}">
+                    <p th:text="${detail.quantity}"></p>
                 </th:block>
             </td>
             <td>

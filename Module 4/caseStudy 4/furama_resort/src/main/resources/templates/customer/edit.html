@@ -12,12 +12,12 @@
             <h1>CHỈNH SỬA KHÁCH HÀNG</h1>
             <table class="table table-dark">
                 <tr>
-                    <th>STT</th>
-                    <td><input type="hidden" th:field="*{id}"></td>
+<!--                    <td>No</td>-->
+                    <td><input type="hidden" th:field="*{id}"> </td>
                 </tr>
                 <tr>
-                    <th>ID</th>
-                    <td><input type="text" th:field="*{code}"></td>
+                    <th>Mã khách hàng</th>
+                    <td><input type="text" th:field="*{code}"><br><p class="text-danger" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p></td>
                 </tr>
                 <tr>
                     <th>Loại khách hàng</th>
@@ -45,15 +45,15 @@
                 </tr>
                 <tr>
                     <th>Chứng minh nhân dân</th>
-                    <td><input type="text" th:field="*{idCard}"></td>
+                    <td><input type="text" th:field="*{idCard}"><br><p class="text-danger" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p></td>
                 </tr>
                 <tr>
                     <th>Số điện thoai</th>
-                    <td><input type="text" th:field="*{phone}"></td>
+                    <td><input type="text" th:field="*{phone}"><br><p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p></td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><input type="text" th:field="*{email}"></td>
+                    <td><input type="text" th:field="*{email}"><br><p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p></td>
                 </tr>
                 <tr>
                     <th>Địa chỉ</th>

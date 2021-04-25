@@ -17,7 +17,7 @@
 <!--                </tr>-->
                 <tr>
                     <th>Mã khách hàng</th>
-                    <td><input type="text" th:field="*{code}"></td>
+                    <td><input type="text" th:field="*{code}"><br><p class="text-danger" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p></td>
                 </tr>
                 <tr>
                     <th>Loại khách hàng</th>
@@ -41,19 +41,21 @@
                     <td><input type="radio" th:field="*{gender}" name="gender" value="male">Nam
                         <input type="radio" th:field="*{gender}" name="gender" value="female">Nữ
                         <input type="radio" th:field="*{gender}" name="gender" value="other">Khác
+                        <br>
+                        <p class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
                     </td>
                 </tr>
                 <tr>
                     <th>Chứng minh nhân dân</th>
-                    <td><input type="text" th:field="*{idCard}"></td>
+                    <td><input type="text" th:field="*{idCard}"><br><p class="text-danger" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p></td>
                 </tr>
                 <tr>
                     <th>Số điện thoai</th>
-                    <td><input type="text" th:field="*{phone}"></td>
+                    <td><input type="text" th:field="*{phone}"><br><p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p></td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><input type="text" th:field="*{email}"></td>
+                    <td><input type="text" th:field="*{email}"><br><p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p></td>
                 </tr>
                 <tr>
                     <th>Địa chỉ</th>

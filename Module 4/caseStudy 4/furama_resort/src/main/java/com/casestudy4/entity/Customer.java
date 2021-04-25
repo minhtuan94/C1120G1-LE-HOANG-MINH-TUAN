@@ -1,6 +1,10 @@
 package com.casestudy4.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
@@ -12,6 +16,8 @@ public class Customer {
     private Integer id;
 
     @Column(name = "customer_code",length = 45, nullable = false)
+    @NotNull(message = "mã khách hàng không được trống ")
+    @Pattern(regexp = "(KH-)[0-9]{4}", message = "Mã Khách hàng có định dạng là KH-XXXX (X là số từ 0-9)")
     private String code;
 
     @ManyToOne
@@ -24,15 +30,22 @@ public class Customer {
     @Column(name = "customer_birthday",columnDefinition = "date", nullable = false)
     private String birthday;
 
+    @NotEmpty(message ="Giới tinh không được trống")
     @Column(name = "customer_gender",nullable = false)
     private String gender;
 
+    @NotEmpty(message = "CMND không được trống")
+    @Pattern(regexp = "[0-9]{9}|[0-9]{12}", message = "Số CMND phải đúng định dạng XXXXXXXXX hoặc XXXXXXXXXXXX (X là số 0-9)")
     @Column(name = "customer_id_card",nullable = false,length = 45)
     private String idCard;
 
+    @NotEmpty(message = "Số điện thoại không được trống")
+    @Pattern(regexp = "(09)(0|1)[0-9]{7}|(84\\+)(09)(0|1)[0-9]{7}", message = "Số điện thoại phải đúng định dạng 090xxxxxxx,091xxxxxxx,(84)+90xxxxxxx,(84)+91xxxxxxx")
     @Column(name = "customer_phone",nullable = false,length = 45)
     private String phone;
 
+    @NotEmpty(message = "email không được trống")
+    @Email(message = "Địa chỉ email phải đúng định dạng email")
     @Column(name = "customer_email", length = 45)
     private String email;
 

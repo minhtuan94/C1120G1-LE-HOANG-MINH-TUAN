@@ -8,7 +8,7 @@
 <div th:replace="~{/main/layout::nav}"></div>
 <div>
     <div class="container">
-        <form th:action="@{/employee/save}" th:object="${createEm}" method="post">
+        <form th:action="@{/employee/save}" th:object="${employee}" method="post">
             <h1>THÊM MỚI NHÂN VIÊN</h1>
             <table class="table table-dark">
                 <tr>
@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                     <th>Chứng minh nhân dân</th>
-                    <td><input type="text" th:field="*{idCard}"></td>
+                    <td><input type="text" th:field="*{idCard}"><br><p class="text-danger" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p></td>
                 </tr>
                 <tr>
                     <th>Lương</th>
@@ -33,11 +33,11 @@
                 </tr>
                 <tr>
                     <th>Số điện thoai</th>
-                    <td><input type="text" th:field="*{phone}"></td>
+                    <td><input type="text" th:field="*{phone}"><br><p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p></td>
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td><input type="text" th:field="*{email}"></td>
+                    <td><input type="text" th:field="*{email}"><br><p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p></td>
                 </tr>
                 <tr>
                     <th>Địa chỉ</th>

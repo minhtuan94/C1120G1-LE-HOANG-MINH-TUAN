@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class ContractDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contract_detail_id", nullable = false)
+    @Column(name = "contract_detail_id")
     private Integer id;
 
     @ManyToOne

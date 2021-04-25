@@ -54,8 +54,10 @@ public class ContractDetailController {
     }
 
     @PostMapping("/save")
-    public String save(ContractDetail contractDetail){
+    public String save(ContractDetail contractDetail, Contract contract){
+        Contract contract1 = this.contractServices.findById(contract.getId());
         contractDetailServices.save(contractDetail);
+        contractServices.save(contract1);
         return "redirect:/contract_detail/list";
     }
 

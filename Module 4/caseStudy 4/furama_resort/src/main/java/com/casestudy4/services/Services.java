@@ -16,4 +16,5 @@ public interface Services<T> {
     void delete(Integer id);
 
     List<T> findAll();
+
 }

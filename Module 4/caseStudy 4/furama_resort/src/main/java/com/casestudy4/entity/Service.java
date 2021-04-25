@@ -1,6 +1,8 @@
 package com.casestudy4.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
@@ -11,6 +13,8 @@ public class Service {
     @Column(name = "service_id")
     private Integer id;
 
+    @NotEmpty(message = "Mã dịch vụ không được trống")
+    @Pattern(regexp = "(DV-)[0-9]{4}", message = "Mã dịch vụ có định dạng là DV-XXXX (X là số từ 0-9)")
     @Column(name = "service_code")
     private String code;
 

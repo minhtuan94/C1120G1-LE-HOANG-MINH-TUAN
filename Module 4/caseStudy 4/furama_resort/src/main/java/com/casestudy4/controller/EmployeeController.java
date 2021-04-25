@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,20 +52,24 @@ public class EmployeeController {
     }
 
     @GetMapping("/create")
-    public String create(Model model){
-        model.addAttribute("createEm",new Employee());
+    public String goCreate(Model model){
+        model.addAttribute("employee",new Employee());
         return "/employee/create";
     }
 
     @PostMapping("/save")
-    public String save(Employee employee){
-        employeeServices.save(employee);
-        return "redirect:/employee/list";
+    public String save(@Validated Employee employee, BindingResult  bindingResult){
+        if (bindingResult.hasErrors()){
+            return "/employee/create";
+        } else {
+            employeeServices.save(employee);
+            return "redirect:/employee/list";
+        }
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("editEm",employeeServices.findById(id));
+    public String goEdit(@PathVariable Integer id, Model model){
+        model.addAttribute("employee",employeeServices.findById(id));
         return "/employee/edit";
     }
 

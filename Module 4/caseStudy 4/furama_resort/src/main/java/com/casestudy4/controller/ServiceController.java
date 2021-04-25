@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,20 +44,25 @@ public class ServiceController {
     }
 
     @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("createSer", new Service());
+    public String goCreate(Model model) {
+        model.addAttribute("service", new Service());
         return "/service/create";
     }
 
     @PostMapping("/save")
-    public String save(Service service) {
-        serviceServices.save(service);
-        return "redirect:/service/list";
+    public String save(@Validated Service service, BindingResult bindingResult) {
+        this.serviceServices.checkServiceCode(service,bindingResult);
+        if(bindingResult.hasErrors()){
+            return "service/create";
+        } else {
+            serviceServices.save(service);
+            return "redirect:/service/list";
+        }
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("editSer", serviceServices.findById(id));
+    public String goEdit(@PathVariable Integer id, Model model) {
+        model.addAttribute("service", serviceServices.findById(id));
         return "/service/edit";
     }
 
