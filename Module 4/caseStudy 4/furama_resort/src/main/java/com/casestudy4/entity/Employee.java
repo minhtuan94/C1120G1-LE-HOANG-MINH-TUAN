@@ -56,6 +56,9 @@ public class Employee {
     @JoinColumn(name = "division_id", referencedColumnName = "division_id", nullable = false)
     private Division division;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "employee")
+    private User user;
+
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private Set<Contract> contractSet;
 
@@ -156,6 +159,14 @@ public class Employee {
 
     public void setDivision(Division division) {
         this.division = division;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Set<Contract> getContractSet() {

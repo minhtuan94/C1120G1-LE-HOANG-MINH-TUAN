@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/main/layout::header}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{/main/layout::nav}"></div>
+<!--<nav class="navbar navbar-light bg-light justify-content-between">-->
+<!--    <form th:action="@{/customer/search}" class="form-inline">-->
+<!--        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>-->
+<!--    </form>-->
+<!--</nav>-->
+<div class="container-fluid">
+    <h1>THỐNG KÊ ĐƠN HÀNG</h1>
+    <table class="table table-dark">
+        <tr>
+            <th>STT</th>
+            <th>Mã đơn hàng</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá(USD)</th>
+            <th>Loại sản phẩm</th>
+            <th>Ngày mua</th>
+            <th>Số lượng sản phẩm</th>
+            <th>Tổng tiền</th>
+            <th>Hành động</th>
+        </tr>
+        <tr th:each="bi, row : ${billList}">
+            <td th:text="${row.index+1}"></td>
+            <td th:text="${bi.id}"></td>
+            <td th:text="${bi.product.name}"></td>
+            <td th:text="${bi.product.price}"></td>
+            <td th:text="${bi.product.productType.name}"></td>
+            <td th:text="${bi.dateBuy}"></td>
+            <td th:text="${bi.quantity}"></td>
+            <td th:text="${bi.total}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/bill/{id}/edit(id=${bi.id})}"><i
+                        class="fas fa-edit"></i></a>
+                <!--            <td><a class="btn btn-primary" th:href="@{/product/{id}/delete(id=${pro.id})}">Delete</a></td>-->
+
+                <a>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
+                            th:onclick="'actionSetId(\''+ ${bi.id} +'\')'">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+
+                </a>
+                <!--                <a class="btn btn-warning" th:href="@{/product/{id}/view(id=${pro.id})}"><i-->
+                <!--                        class="far fa-eye"></i></a>-->
+            </td>
+        </tr>
+    </table>
+    <nav aria-label="page-nav">
+        <ul class="pagination justify-content-center">
+            <li th:class="${billList.hasPrevious()}? 'page-item': 'page-item disabled'">
+                <a class="page-link" th:tabindex="${billList.hasPrevious()}? 0 :1"
+                   th:href="@{/bill/list?page=__${billList.number -1}__}">Previous</a>
+            </li>
+            <li class="page-item" th:if="${billList.hasPrevious()}">
+                <a class="page-link" th:href="@{/bill/list?page=__${billList.number -1}__}"
+                   th:text="${billList.number}"></a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link" th:href="@{/bill/list?page=__${billList.number}__}"
+                   th:text="${billList.number+1}"></a>
+            </li>
+            <li class="page-item" th:if="${billList.hasNext()}">
+                <a class="page-link" th:href="@{/bill/list?page=__${billList.number +1}__}"
+                   th:text="${billList.number+2}"></a>
+            </li>
+            <li th:class="${billList.hasNext()}? 'page-item': 'page-item disabled'">
+                <a class="page-link" th:tabindex="${billList.hasNext()}? 0 :1"
+                   th:href="@{/bill/list?page=__${billList.number +1}__}">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <br><br>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa đơn hàng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa đơn hàng này?
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/product/delete}" method="get">
+                    <input type="hidden" name="id" id="idDeleted">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function actionSetId(id) {
+        document.getElementById("idDeleted").value = id;
+    }
+    // $(document).ready(function () {
+    //     $('.delete').click(function () {
+    //         let tag = $(this)[0];
+    //         document.getElementById("delete").href = "/customer/"+tag.id+"/delete";
+    //         $("#modelId").modal('list');
+    //     })
+    // })
+</script>
+<div th:replace="~{/main/layout::script}"></div>
+</body>
+</html>

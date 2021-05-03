@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+</head>
+<body>
+<!--<div>-->
+<!--    <ul class="nav nav-pills" style="background-color: cornflowerblue" role="tablist">-->
+<!--        <li class="nav-item">-->
+<!--            <a th:if="${#request.userPrincipal == null}" class="nav-link" href="/login" role="tab" style="color: white">Main Page</a>-->
+<!--            <a th:if="${#request.userPrincipal != null}" class="nav-link" href="/home_logged" role="tab" style="color: white">Main Page</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="/contract/list" style="color: white" role="tab">Contract</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="/customer/list" style="color: white" role="tab">Customer</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="/employee/list" style="color: white" role="tab">Employee</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" href="/service/list" style="color: white" role="tab">Service</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</div>-->
+
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top" id="fixNav">-->
+<!--    <a style="color: whitesmoke;margin: 0 50px 0 50px" href="/login" th:if="${#request.userPrincipal == null}" class="navbar-brand"><img-->
+<!--            src="/picture/FURAMA.png" width="50px" height="50px" alt="Logo"></a>-->
+<!--    <a style="color: whitesmoke;margin: 0 50px 0 50px" href="/home_logged" th:if="${#request.userPrincipal != null}" class="navbar-brand"><img-->
+<!--            src="/picture/FURAMA.png" width="50px" height="50px" alt="Logo"></a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--        <ul class="navbar-nav mr-auto">-->
+<!--            &lt;!&ndash;            <li class="nav-item">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <a class="nav-link" >Khách hàng</a>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </li>&ndash;&gt;-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown1"-->
+<!--                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                    Khách hàng-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" th:href="@{/customer/list}" style="cursor: pointer">Danh sách khách hàng</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/customer/create}">Thêm mới khách hàng</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown2"-->
+<!--                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                    Nhân viên-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" th:href="@{/employee/list}">Danh sách nhân viên</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/employee/create}">Thêm mới nhân viên</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown3"-->
+<!--                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                    Dịch vụ-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" th:href="@{/service/list}">Danh sách dịch vụ</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/service/create}">Thêm mới dịch vụ</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown4"-->
+<!--                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                    Hợp đồng-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" th:href="@{/contract/list}">Danh sách hợp đồng</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/contract/create}">Thêm mới hợp đồng</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a style="color: whitesmoke;margin-left: 50px" class="nav-link dropdown-toggle" id="navbarDropdown5"-->
+<!--                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                    Hợp đồng chi tiết-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu bg-success" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" th:href="@{/contract_detail/list}">Danh sách hợp đồng chi tiết</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/contract_detail/create}">Thêm mới hợp đồng chi tiết</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--&lt;!&ndash;            <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <form style="padding-left: 100px">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ul class="navbar-nav mr-auto" >&ndash;&gt;-->
+<!--&lt;!&ndash;                        <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a class="nav-link" href="/logout" style="color: white">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <i class="fa fa-user-circle"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                Welcome! <span th:utext="${#request.userPrincipal.name}"></span></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--        &lt;!&ndash;        <form class="form-inline my-2 my-lg-0">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </form>&ndash;&gt;-->
+<!--    </div>-->
+<!--</nav>-->
+<form method="post" th:action="@{/j_spring_security_check}" class="login">
+    <p>
+        <label>Email:</label>
+        <input type="text" name="username">
+    </p>
+
+    <p>
+        <label>Password:</label>
+        <input type="password" name="password">
+    </p>
+
+    <p class="forgot-password">
+        <label class="checkbox-wrap checkbox-primary" style="color: white">Remember Me
+            <input type="checkbox" name="rememberMe" checked>
+            <span class="checkmark"></span>
+        </label>
+    </p>
+
+    <p class="login-submit">
+        <button type="submit" class="login-button">Login</button>
+    </p>
+
+    <p class="forgot-password"><a href="#">Forgot your password?</a></p>
+</form>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -46,7 +46,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public String showList(Model model,@PageableDefault(value = 5) Pageable pageable){
+    public String showList(Model model,@PageableDefault(value = 3) Pageable pageable){
         model.addAttribute("employeeList",employeeServices.sort(pageable));
         return "/employee/list";
     }

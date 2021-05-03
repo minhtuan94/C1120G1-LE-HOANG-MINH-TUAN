@@ -103,6 +103,17 @@
                         <a class="dropdown-item" th:href="@{/contract_detail/create}">Thêm mới hợp đồng chi tiết</a>
                     </div>
                 </li>
+                <li>
+                    <form style="padding-left: 100px">
+                        <ul class="navbar-nav mr-auto" >
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout" style="color: white">
+                                    <i class="fa fa-user-circle"></i>
+                                    Welcome! <span th:utext="${#request.userPrincipal.name}"></span></a>
+                            </li>
+                        </ul>
+                    </form>
+                </li>
             </ul>
             <!--        <form class="form-inline my-2 my-lg-0">-->
             <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->

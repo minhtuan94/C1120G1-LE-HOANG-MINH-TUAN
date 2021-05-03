@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/main/layout::header}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{/main/layout::nav}"></div>
+<div>
+    <div class="container">
+        <form th:action="@{/bill/save}" th:object="${bill}" method="post">
+            <h1>CHỈNH SỬA ĐƠN HÀNG</h1>
+            <table class="table table-dark">
+                <!--                <tr>-->
+                <!--                    <th>Tên</th>-->
+                <!--                    <td><input type="hidden" th:field="*{id}"></td>-->
+                <!--                </tr>-->
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <td><input type="hidden" th:field="*{id}"></td>
+                </tr>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <td>
+                        <select th:field="*{product}">
+                            <option th:each="pro : ${products}" th:value="${pro.id}" th:text="${pro.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Loại sản phẩm</th>
+                    <td>
+                        <select name="type" th:value="${type}">
+                            <option th:each="types : ${productTypes}" th:value="${types.id}" th:text="${types.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ngày mua</th>
+                    <td>
+                        <input type="text" th:field="*{dateBuy}">
+                    </td>
+                </tr>
+                <tr>
+<!--                    <th>Số lượng</th>-->
+                    <td>
+                        <input type="hidden" th:field="*{total}">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Lưu" class="btn btn-primary"><a th:href="@{/bill/list}"
+                                                                                    class="btn btn-danger">Hủy</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div th:replace="~{/main/layout::script}"></div>
+</body>
+</html>

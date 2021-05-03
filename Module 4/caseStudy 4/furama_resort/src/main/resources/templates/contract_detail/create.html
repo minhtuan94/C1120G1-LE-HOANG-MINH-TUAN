@@ -17,9 +17,10 @@
                 </tr>
                 <tr>
                     <th>Hợp đồng</th>
+                    <input type="hidden" th:field="*{contract}">
                     <td>
-                        <select th:field="*{contract}">
-                            <option th:each="em : ${contract}" th:value="${em.id}" th:text="${em.startDate}">
+                        <select name="contractId">
+                            <option th:each="em : ${contract}" th:value="${em.id}" th:text="${em.id}">
                             </option>
                         </select>
                     </td>

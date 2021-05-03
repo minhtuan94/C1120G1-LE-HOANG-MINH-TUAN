@@ -38,9 +38,9 @@
                 </tr>
                 <tr>
                     <th>Giới tính</th>
-                    <td><input type="radio" th:field="*{gender}" name="gender" value="male">Nam
-                        <input type="radio" th:field="*{gender}" name="gender" value="female">Nữ
-                        <input type="radio" th:field="*{gender}" name="gender" value="other">Khác
+                    <td><input type="radio" th:field="*{gender}" name="gender" value="Nam">Nam
+                        <input type="radio" th:field="*{gender}" name="gender" value="Nữ">Nữ
+                        <input type="radio" th:field="*{gender}" name="gender" value="Khác">Khác
                         <br>
                         <p class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
                     </td>

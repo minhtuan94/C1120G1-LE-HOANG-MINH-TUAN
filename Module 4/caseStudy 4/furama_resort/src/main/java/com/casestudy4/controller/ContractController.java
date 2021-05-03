@@ -62,15 +62,13 @@ public class ContractController {
     }
 
     @PostMapping("/save")
-    public String save(@Validated Contract contract, BindingResult bindingResult, ContractDetail contractDetail){
+    public String save(@Validated Contract contract, BindingResult bindingResult){
         new Contract().validate(contract, bindingResult);
-        ContractDetail contractDetail1 = this.contractDetailServices.findById(contractDetail.getId());
 
         if (bindingResult.hasErrors()){
             return "contract/create";
         } else {
             this.contractServices.save(contract);
-            this.contractServices.save(contractDetail1);
             return "redirect:/contract/list";
         }
     }

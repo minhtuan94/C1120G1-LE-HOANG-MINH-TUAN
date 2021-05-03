@@ -11,10 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -54,10 +51,11 @@ public class ContractDetailController {
     }
 
     @PostMapping("/save")
-    public String save(ContractDetail contractDetail, Contract contract){
-        Contract contract1 = this.contractServices.findById(contract.getId());
+    public String save(ContractDetail contractDetail, @RequestParam(name = "contractId") Integer id){
+        Contract contract = this.contractServices.findById(id);
+        contractDetail.setContract(contract);
         contractDetailServices.save(contractDetail);
-        contractServices.save(contract1);
+        contractServices.save(contract); //cập nhật lại contract tại cột total money
         return "redirect:/contract_detail/list";
     }
 

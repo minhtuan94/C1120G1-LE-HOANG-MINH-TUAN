@@ -10,6 +10,7 @@
     <h1>DANH SÁCH HỢP ĐỒNG CHI TIẾT</h1>
     <table class="table table-dark">
         <tr>
+            <th>No</th>
             <th>ID</th>
             <th>Ngày bắt đầu</th>
             <th>Ngày kết thúc</th>
@@ -18,7 +19,8 @@
             <th>Hành động</th>
         </tr>
         <tr th:each="con, row : ${contract_detailList}">
-            <td th:text="${row.index+1}"></td>
+            <td th:text="${row.count}"></td>
+            <td th:text="${con.contract.id}"></td>
             <td th:text="${con.contract.startDate}"></td>
             <td th:text="${con.contract.endDate}"></td>
             <td th:text="${con.attachService.name}"></td>
