@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      
+        //chọn phiên bản ES
+        "target": "ES6",
+        //chọn folder đầu ra chứa kết quả js từ ts
+        "outDir": "mjs",
+        //tự động biên dịch ts--> js
+        "watch": true,
+        // bỏ comment khi đã dịch qua js
+        "removeComments": true
+    },
+    "exclude": [
+        "mjs",
+        
+    ]
+}
