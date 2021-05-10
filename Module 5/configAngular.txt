@@ -1,0 +1,48 @@
+*install Angular CLI
+	npm install -g @angular/cli
+
+*create new Angular project
+	ng new <name_project>
+
+*create component
+	ng generate component <name_component>
+	ng g c <name_component>
+
+*create interface
+	ng g i <name_interface>
+
+*add yarn (optional):
+	npm install yarn -g
+
+*add bootstrap:
+	npm install bootstrap --save
+
+*add jquery:
+	npm install jquery --save
+
+*add popper
+	npm install popper.js --save
+
+*config in angular.json:
+	"styles": [
+    		"src/styles.css",
+    		"./node_modules/bootstrap/dist/css/bootstrap.min.css"
+ 	],
+ 	"scripts": [
+    		"./node_modules/jquery/dist/jquery.min.js",
+    		"./node_modules/popper.js/dist/umd/popper.min.js",
+    		"./node_modules/bootstrap/dist/js/bootstrap.min.js"
+ 	]
+
+*Run Angular
+	ng serve --o
+
+*Create typescript project
+	npm init typescript-project
+
+*Run TS project
+	tsc <name_file>.ts
+	node <name_file>.js
+
+*Built all files TS
+	tsc -p ./

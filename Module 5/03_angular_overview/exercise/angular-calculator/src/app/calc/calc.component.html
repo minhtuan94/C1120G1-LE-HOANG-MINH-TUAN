@@ -1,0 +1,15 @@
+<h1>Calc works!</h1>
+<table class=" table-striped">
+  <tr>
+    <td colspan="2"><input type="text" name="num1" #num1></td>
+    <td colspan="2"><input type="text" name="num2" #num2></td>
+  </tr>
+  <tr>
+    <td><button type="submit" value="Addition(+)" #add (click)="calculator(num1.value, num2.value,add.value) ">Addition(+)</button></td>
+    <td><button type="submit" value="Subtraction(-)" #sub (click)="calculator(num1.value, num2.value,sub.value)"> Subtraction(-)</button></td>
+    <td><button type="submit" value="Multiplication(x)" #mul (click)="calculator(num1.value, num2.value,mul.value)">Multiplication(x)</button></td>
+    <td><button type="submit" value="Division(/)" #div (click)="calculator(num1.value, num2.value,div.value)">Division(/)</button></td>
+  </tr>
+
+</table>
+<p>Result: {{result}}</p>
