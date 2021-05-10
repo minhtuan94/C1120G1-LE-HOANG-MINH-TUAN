@@ -1,0 +1,24 @@
+<div class="card border-info container">
+  <div class="card-body">
+    <h4 class="card-title">Thông tin sản phẩm</h4>
+    <div *ngIf="productDetails ">
+        <div>
+          Tên: {{productDetails.name | titlecase}}
+        </div>
+        <div>
+          Giá: {{productDetails.price | currency:'VND':true}}
+        </div>
+        <div>
+          Ngày sản xuất: {{productDetails.dateOfManufacture|date:'dd/MM/yyyy'}}
+        </div>
+        <div>
+          Số lượng: {{productDetails.quantity}}
+        </div>
+        <div>
+          Xuất xứ: {{productDetails.origin}}
+        </div>
+    </div>
+
+
+  </div>
+</div>

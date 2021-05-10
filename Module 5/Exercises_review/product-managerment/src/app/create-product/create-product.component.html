@@ -1,0 +1,41 @@
+<div class="card container">
+  <div class="card-body">
+    <div class="card-title"><h3>Tạo mới sản phẩm</h3></div>
+    <table class="table">
+      <tr>
+        <td>Tên</td>
+        <td><input type="text" class="form-control" #name></td>
+      </tr>
+      <tr>
+        <td>Giá</td>
+        <td><input type="text" class="form-control" #price></td>
+      </tr>
+      <tr>
+        <td>Ngày sản xuất</td>
+        <td><input type="date" class="form-control" #date></td>
+      </tr>
+      <tr>
+        <td>Số lượng</td>
+        <td><input type="text" class="form-control" #quantity></td>
+      </tr>
+      <tr>
+        <td>Xuất xứ</td>
+        <td>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Lựa chọn xuất xứ</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" #origin (change)="choosePlace(origin.value)">
+              <option *ngFor="let i of place">{{i}}</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="button" class="btn btn-outline-info" (click)="create(name.value,price.value,date.value,quantity.value,origin.value)">Lưu</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
