@@ -1,7 +1,7 @@
 <div class="card border-info container">
   <div class="card-body">
     <h4 class="card-title">Thông tin sản phẩm</h4>
-    <div *ngIf="productDetails ">
+    <div *ngIf="productDetails;else nodata ">
         <div>
           Tên: {{productDetails.name | titlecase}}
         </div>
@@ -18,7 +18,9 @@
           Xuất xứ: {{productDetails.origin}}
         </div>
     </div>
-
+    <ng-template #nodata>
+      <p style="color: red">Không có sản phẩm nào, cần thêm mới sản phẩm</p>
+    </ng-template>
 
   </div>
 </div>
