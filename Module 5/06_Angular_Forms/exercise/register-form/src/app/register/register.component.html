@@ -1,0 +1,87 @@
+<div class="card border-success">
+  <h3 class="card-header bg-success" style="text-align: center">Register Form</h3>
+  <div class="card-body">
+    <form [formGroup]="registers" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-3">
+      <div class="form-group row">
+        <label class="col">
+          Email
+          <input type="email" class="form-control" formControlName="registerEmail">
+        </label>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="registers.get('registerEmail').invalid && registers.get('registerEmail').dirty">
+        Invalid email!
+      </div>
+      <fieldset formGroupName="pwGroup">
+        <div class="form-group row">
+          <label class="col">
+            Password
+            <input type="password" class="form-control" formControlName="registerPassword">
+          </label>
+        </div>
+        <div class="form-group row">
+          <label class="col">
+            Confirm Password
+            <input type="password" class="form-control" formControlName="registerConfirmPassword">
+          </label>
+        </div>
+      </fieldset>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registers.hasError('passWordDoNotMatch', ['pwGroup']) &&
+      registers.get('pwGroup').dirty">
+        Password does not match!
+      </div>
+      <div class="form-group row">
+        <label class="col">
+          Country
+          <select formControlName="registerCountry" class="form-control">
+            <option value="">Chọn</option>
+            <option value="vn">Việt Nam</option>
+            <option value="us">US</option>
+          </select>
+        </label>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registers.get('registerCountry').invalid && registers.get('registerCountry').touched">
+        Country is required!
+      </div>
+      <div class="form-group row">
+        <label class="col">
+          Age
+          <input type="number" class="form-control" formControlName="registerAge">
+        </label>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registers.get('registerAge').invalid && registers.get('registerAge').touched">
+        You have to be over 18 to register an account
+      </div>
+      <div class="form-group row">
+        <div class="col">
+          Gender
+          <label><input type="radio" formControlName="registerGender" value="male">Male</label>
+          <label><input type="radio" formControlName="registerGender" value="female">Female</label>
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registers.get('registerGender').invalid && registers.get('registerGender').touched">
+        Gender is required!
+      </div>
+      <div class="form-group row">
+        <label class="col">
+          Phone
+          <input type="text" class="form-control" formControlName="registerPhone" placeholder="+841234567890">
+        </label>
+      </div>
+      <div class="alert alert-danger" role="alert"
+           *ngIf="registers.get('registerPhone').invalid && registers.get('registerPhone').dirty">
+        <span *ngIf="registers.get('registerPhone').hasError('required')">Phone is required</span>
+        <span *ngIf="registers.get('registerPhone').hasError('pattern')">Phone must start with +84 followed by 9 or 10 digits.</span>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="registers.invalid">Create</button>
+      </div>
+    </form>
+    <pre>
+{{ registers.value | json}}
+</pre>
+  </div>
+</div>

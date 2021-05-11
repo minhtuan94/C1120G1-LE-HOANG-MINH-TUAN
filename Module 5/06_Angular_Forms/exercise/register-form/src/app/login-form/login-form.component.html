@@ -1,0 +1,32 @@
+<div class="card border-success">
+  <h3 class="card-header bg-success" style="text-align: center">Login Form</h3>
+  <div class="card-body">
+    <form [formGroup]="login" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-3">
+      <div class="form-group row">
+        <label class="col">
+          Email
+          <input type="email" class="form-control" formControlName="email">
+        </label>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="login.get('email').invalid && login.get('email').dirty">
+        Invalid email!
+      </div>
+      <div class="form-group row">
+        <label class="col">
+          Password
+          <input type="password" class="form-control" formControlName="password">
+        </label>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="login.get('password').invalid && login.get('password').dirty">
+        Invalid password!
+      </div>
+      <div class="form-group">
+        <button class="btn btn-info" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<pre>
+  {{ login.value | json }}
+</pre>

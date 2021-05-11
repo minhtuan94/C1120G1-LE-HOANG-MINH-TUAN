@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   ];
 
   public product : Product;
-
+  public count : number;
   constructor() { }
 
   ngOnInit(): void {
@@ -25,6 +25,11 @@ export class ProductComponent implements OnInit {
 
   showDetail(item: Product) {
     this.product = item;
+    this.count++;
+  }
+
+  editCount($event: number) {
+    this.count = $event;
   }
 
   getCreateProduct(value: Product) {

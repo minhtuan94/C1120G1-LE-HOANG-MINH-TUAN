@@ -12,7 +12,7 @@
               <th>Giá</th>
               <th>Ngày sản xuất</th>
               <th>Trạng thái</th>
-              <th>Origin</th>
+              <th>Xuất xứ</th>
               </thead>
               <tbody>
               <tr *ngFor="let item of productList; let i = index" (click)="showDetail(item)">
@@ -40,7 +40,7 @@
 </div>
 <div class="container">
   <div>
-    <app-view-product [productDetail]="product"></app-view-product>
+    <app-view-product [productDetail]="product" (productEdit)="editCount($event)"></app-view-product>
   </div>
   <div>
     <app-create-product (createProduct)="getCreateProduct($event)"></app-create-product>
