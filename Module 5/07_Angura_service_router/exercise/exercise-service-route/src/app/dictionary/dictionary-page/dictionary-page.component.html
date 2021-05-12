@@ -1,0 +1,15 @@
+<h1>Từ điển</h1>
+<table border="1" cellspacing="0">
+  <tr>
+    <td>STT</td>
+<!--    <td>ID</td>-->
+    <td>Tiếng anh</td>
+    <td>Tiếng việt</td>
+  </tr>
+  <tr *ngFor="let dic of dictionary; let i = index" (click)="showDetail(i+1)">
+    <td>{{i+1}}</td>
+<!--    <td>{{dic.id}}</td>-->
+    <td>{{dic.word}}</td>
+    <td>{{dic.mean}}</td>
+  </tr>
+</table>

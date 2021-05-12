@@ -1,0 +1,16 @@
+<h1>Chi tiết từ điển</h1>
+<div *ngIf="dictionaryList; else nodata">
+  <div>
+    ID: {{dictionaryList.id}}
+  </div>
+  <div>
+    Tiếng anh: {{dictionaryList.word}}
+  </div>
+  <div>
+    Tiếng Việt: {{dictionaryList.mean}}
+  </div>
+
+</div>
+<ng-template #nodata>
+  <p style="color: red">Không có dữ liệu</p>
+</ng-template>
